@@ -86,7 +86,7 @@ resource "azurerm_cognitive_deployment" "chat" {
   }
 
   scale {
-    type     = "Standard"
+    type     = "GlobalStandard"
     capacity = 10
   }
 }
