@@ -60,7 +60,7 @@ resource "azurerm_storage_container" "docs" {
 resource "azurerm_search_service" "rag" {
   name                = "srch-${var.project_name}-${local.suffix}"
   resource_group_name = azurerm_resource_group.rag.name
-  location            = azurerm_resource_group.rag.location
+  location            = var.search_location
   sku                 = "basic"
   tags                = local.tags
 }
@@ -76,13 +76,13 @@ resource "azurerm_cognitive_account" "openai" {
 }
 
 resource "azurerm_cognitive_deployment" "chat" {
-  name                 = "chat-gpt4o-mini"
+  name                 = "chat-gpt5-mini"
   cognitive_account_id = azurerm_cognitive_account.openai.id
 
   model {
     format  = "OpenAI"
-    name    = "gpt-4o-mini"
-    version = "2024-07-18"
+    name    = "gpt-5-mini"
+    version = "2025-08-07"
   }
 
   scale {
@@ -92,13 +92,13 @@ resource "azurerm_cognitive_deployment" "chat" {
 }
 
 resource "azurerm_cognitive_deployment" "embedding" {
-  name                 = "embedding-ada"
+  name                 = "embedding-3-small"
   cognitive_account_id = azurerm_cognitive_account.openai.id
 
   model {
     format  = "OpenAI"
-    name    = "text-embedding-ada-002"
-    version = "2"
+    name    = "text-embedding-3-small"
+    version = "1"
   }
 
   scale {

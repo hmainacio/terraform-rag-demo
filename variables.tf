@@ -21,3 +21,9 @@ variable "openai_location" {
   type        = string
   default     = "eastus2"
 }
+
+variable "search_location" {
+  description = "Região do Azure AI Search (separada, pois a capacidade varia por região e pode faltar)"
+  type        = string
+  default     = "eastus"
+}
